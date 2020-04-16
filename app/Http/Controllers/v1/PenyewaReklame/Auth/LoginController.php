@@ -38,13 +38,15 @@ class LoginController extends Controller
                 return response()->json([
                     'status' => false,
                     'massage' => 'Silahkan menunggu konfirmasi dari kami',
-                ]);
+                    'data' => (object)[],
+                ], 200);
             }
         }else{
             return response()->json([
                 'status' => false,
                 'massage' => 'Gagal login',
-            ]);
+                'data' => (object)[],
+            ], 401);
         }
     }
 }

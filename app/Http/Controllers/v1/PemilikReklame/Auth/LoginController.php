@@ -18,38 +18,37 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $this->validate($request,[
-           'email' => 'required',
-           'password' => 'required'
+        $this->validate($request, [
+            'email' => 'required',
+            'password' => 'required'
         ]);
 
         $credentials = [
-            'email' => $request-> email,
-            'password' => $request-> password
+            'email' => $request->email,
+            'password' => $request->password
         ];
 
-        if (Auth::guard('pemilik')->attempt($credentials)){
+        if (Auth::guard('pemilik')->attempt($credentials)) {
             $user = Auth::guard('pemilik')->user();
-            if ($user-> active == '2'){
+            if ($user->active == '2') {
                 return response()->json([
-                   'status' => true,
+                    'status' => true,
                     'message' => 'Anda berhasil login',
-                    'data' => new PemilikReklameResource($user),
-                    'meta'=> [
-                        'token'=> $user->api_token
-                    ]
-                ]);
-            }else{
+                    'data' => $user,
+                ], 200);
+            } else {
                 return response()->json([
-                  'status' => false,
-                  'massage' => 'Silahkan menunggu konfirmasi dari kami',
-                ]);
+                    'status' => false,
+                    'massage' => 'Silahkan menunggu konfirmasi dari kami',
+                    'data' => (object) []
+                ], 200);
             }
-        }else{
+        } else {
             return response()->json([
                 'status' => false,
                 'massage' => 'Gagal login',
-            ]);
+                'data' => (object)[]
+            ], 401);
         }
     }
 }
