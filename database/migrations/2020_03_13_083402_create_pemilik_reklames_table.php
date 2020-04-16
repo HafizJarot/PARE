@@ -14,7 +14,7 @@ class CreatePemilikReklamesTable extends Migration
     public function up()
     {
         Schema::create('pemilik_reklames', function (Blueprint $table) {
-            $table->char('id','3')->unique();
+            $table->increments('id');
             $table->string('no_izin')->unique();
             $table->string('nama_perusahaan','40');
             $table->string('no_telp','13');
