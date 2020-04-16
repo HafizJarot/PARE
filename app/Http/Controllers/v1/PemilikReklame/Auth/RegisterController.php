@@ -32,7 +32,6 @@ class RegisterController extends Controller
         ]);
 
         $user= new PemilikReklame();
-        $user->id= $request->id;
         $user->no_izin = $request->no_izin;
         $user->nama_perusahaan = $request->nama_perusahaan;
         $user->no_telp = $request->no_telp;
