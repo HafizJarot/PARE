@@ -39,7 +39,6 @@ class RegisterController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->api_token = Str::random(80);
-        $user->active = '2';
         $user->save();
 
         return response()->json([

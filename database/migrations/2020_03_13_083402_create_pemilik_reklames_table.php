@@ -24,7 +24,7 @@ class CreatePemilikReklamesTable extends Migration
             $table->string('password');
             $table->string('api_token', 80)->unique()->nullable()->default(null);
             $table->rememberToken();
-            $table->enum('active',['0','1','2'])->default('1');
+            $table->boolean('active')->nullable();
             $table->timestamps();
         });
     }
